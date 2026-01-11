@@ -1,90 +1,85 @@
 # Port Scanner
 
-A simple Python-based TCP port scanner that allows you to scan one or more target IP addresses or domain names for open ports within a specified range. This tool provides information about open ports, including service banners and potential vulnerabilities.
+A multi-threaded TCP port scanner built in Python that scans one or more hosts for open ports, attempts to fingerprint services, and highlights simple vulnerability indicators. Designed for learning, security testing, and basic network auditing.
 
-## Table of Contents
+---
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Options](#options)
-- [Examples](#examples)
-- [Purpose](#purpose)
+##  Features
+- Scan single or multiple targets
+- Custom port ranges or scan all 65,535 ports
+- Multi-threading for speed
+- Basic banner + service detection (FTP, SSH, HTTP, SMTP, etc.)
+- Simple signature-based vulnerability hints
+- Optional JSON output
+- Graceful interrupt handling (Ctrl+C)
 
-## Features
+---
 
-- Scan one or more target IP addresses or domain names for open ports.
-- Specify a port range to scan or scan all available ports.
-- Retrieve service banners and service versions for open ports.
-- Detect known vulnerabilities for specific services (e.g., FTP, SSH).
-- Multithreaded scanning for faster results.
-- Save scan results to a JSON file.
-- Optional verbose output.
-
-## Tech Stack
-
-This project is built using the following technologies and Python libraries:
-
-- Python 3.x: The core programming language used for development.
-- [argparse](https://docs.python.org/3/library/argparse.html): Python library for parsing command-line arguments.
-- [socket](https://docs.python.org/3/library/socket.html): Python library for low-level network programming.
-- [threading](https://docs.python.org/3/library/threading.html): Python library for multithreading.
-- [json](https://docs.python.org/3/library/json.html): Python library for working with JSON data.
-- [tqdm](https://github.com/tqdm/tqdm): Python library for displaying progress bars.
-- [termcolor](https://pypi.org/project/termcolor/): Python library for adding color to terminal text.
-- [IPython](https://ipython.org/): Interactive computing in Python (for interactive use, not required for the core functionality).
-
-These libraries and tools are used to create a robust and efficient port scanning utility that simplifies the process of identifying open ports and gathering information about the services running on them.
-
-
-## Getting Started
-
-### Prerequisites
-
+##  Tech Stack
 - Python 3.x
-- pip (Python package manager)
+- argparse, socket, threading, json (built-in)
+- tqdm (progress bar)
+- termcolor (colored output)
+- ipython (optional, for screen clearing)
 
-### Installation
+---
 
-1. Clone the repository:
+##  Installation
+Clone the repository:
+git clone https://github.com/cruiex/portscanner.git
+cd portscanner
 
-   ```shell
-   git clone https://github.com/cruiex/portscanner.git
-  
-2. Navigate to the project directory:
-   ```shell  
-   cd port-scanner
-3. Install the required Python packages:
-   ```shell
-   pip install -r requirements.txt 
-## Usage    
-```bash
-python port_scanner.py -t <targets> [-p <port-range>] [-T <timeout>] [-n <num-threads>] [-o <output>] [-v]
-```
-## Options   
-- -t, --targets: Specify the target IP addresses or domain names (required).
-- -p, --port-range: Specify the port range to scan (e.g., 1-100 or all). Default is 1-100.
-- -T, --timeout: Specify the timeout value in seconds. Default is 1.0 seconds.
-- -n, --num-threads: Specify the number of threads to use for scanning. Default is 10.
-- -o, --output: Specify an output file to save results to (e.g., output.json).
-- -v, --verbose: Enable verbose output.
+Install dependencies manually:
+pip install tqdm termcolor ipython
+(If you're not using IPython anymore, skip it.)
 
-## Examples
-1. Scan a single target for open ports (default port range):
- ```shell
- python port_scanner.py -t 192.168.1.1
- ```
-2. Scan multiple targets with a custom port range and save results to a file:
-```shell
- python port_scanner.py -t example.com 192.168.1.1 -p 1-65535 -o results.json
-``` 
-3. Enable verbose output:
-```shell
-python port_scanner.py -t 192.168.1.1 -v
-```
-## Purpose
+---
 
-The purpose of this project is to provide a simple yet effective TCP port scanning tool that allows users to scan one or more target IP addresses or domain names for open ports. It is designed to be versatile, fast, and informative, providing essential information about open ports, service banners, and potential vulnerabilities. Whether you are a network administrator, a security professional, or a curious individual, this tool can help you identify open ports on your network and gather valuable insights about the services running on them.
+##  Usage
+python portscanner.py -t <targets> [-p <port-range>] [-T <timeout>] [-n <num-threads>] [-o <output>] [-v]
+
+---
+
+##  Options
+-t, --targets      Target IP(s) or domain(s), required  
+-p, --port-range   Custom range (1-500, 20-80, all), default 1-100  
+-T, --timeout      Timeout in seconds, default 1.0  
+-n, --num-threads  Threads per batch, default 10  
+-o, --output       Save results to JSON  
+-v, --verbose      Enable verbose mode  
+
+---
+
+##  Examples
+Scan a single target:
+python portscanner.py -t 192.168.1.1
+
+Scan with custom range:
+python portscanner.py -t scanme.nmap.org -p 1-1000
+
+Scan multiple hosts + save output:
+python portscanner.py -t example.com 192.168.1.5 -p all -o results.json
+
+Verbose mode:
+python portscanner.py -t localhost -v
+
+---
+
+##  Purpose
+A simple educational TCP scanner that helps users:
+- Understand networking basics
+- Detect exposed ports
+- Identify services running on a host
+
+Not intended to replace Nmap — just to learn how scanning works under the hood.
+
+---
+
+## Legal Disclaimer
+Only scan systems you own or have explicit permission to test.  
+Unauthorized scanning may violate laws or policies.
+
+---
+
+## 🙌 Contributing
+Fork, modify, improve — PRs welcome.
