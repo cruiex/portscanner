@@ -80,6 +80,3 @@ Only scan systems you own or have explicit permission to test.
 Unauthorized scanning may violate laws or policies.
 
 ---
-
-## 🙌 Contributing
-Fork, modify, improve — PRs welcome.
