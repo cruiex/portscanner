@@ -62,21 +62,3 @@ python portscanner.py -t example.com 192.168.1.5 -p all -o results.json
 
 Verbose mode:
 python portscanner.py -t localhost -v
-
----
-
-##  Purpose
-A simple educational TCP scanner that helps users:
-- Understand networking basics
-- Detect exposed ports
-- Identify services running on a host
-
-Not intended to replace Nmap — just to learn how scanning works under the hood.
-
----
-
-## Legal Disclaimer
-Only scan systems you own or have explicit permission to test.  
-Unauthorized scanning may violate laws or policies.
-
----
